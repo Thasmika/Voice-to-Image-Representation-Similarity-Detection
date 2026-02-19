@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice to Image System</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Voice to Image System</h1>
+        <p class="subtitle">Convert voice recordings into visual representations</p>
+    </header>
+
+    <main>
+        <!-- Upload Section -->
+        <section id="upload-section" class="section">
+            <h2>Upload Audio</h2>
+            <div id="drop-zone" class="drop-zone">
+                <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <p class="drop-text">Drag & Drop Audio File Here</p>
+                <p class="drop-subtext">or click to browse</p>
+                <p class="supported-formats">Supported formats: WAV, MP3, FLAC, OGG</p>
+                <input type="file" id="file-input" accept=".wav,.mp3,.flac,.ogg,audio/wav,audio/mpeg,audio/flac,audio/ogg" hidden>
+            </div>
+            <div id="file-info" class="file-info hidden">
+                <p><strong>Selected:</strong> <span id="file-name"></span></p>
+                <p><strong>Size:</strong> <span id="file-size"></span></p>
+            </div>
+            <div id="loading-indicator" class="loading-indicator hidden">
+                <div class="spinner"></div>
+                <p>Processing audio...</p>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="section">
+            <div class="section-header">
+                <h2>Generated Images</h2>
+                <button id="compare-btn" class="btn btn-primary" disabled>Compare Selected (0/2)</button>
+            </div>
+            <div id="results-grid" class="results-grid">
+                <p class="empty-state">No images generated yet. Upload an audio file to get started.</p>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison-section" class="section hidden">
+            <h2>Similarity Comparison</h2>
+            <div class="comparison-container">
+                <div class="comparison-images">
+                    <div class="comparison-image-wrapper">
+                        <img id="compare-img-1" src="" alt="Image 1">
+                        <p id="compare-label-1" class="image-label"></p>
+                    </div>
+                    <div class="similarity-display">
+                        <div class="similarity-score" id="similarity-score">--</div>
+                        <div class="similarity-bar-container">
+                            <div class="similarity-bar" id="similarity-bar"></div>
+                        </div>
+                        <p class="similarity-label">Similarity Score</p>
+                    </div>
+                    <div class="comparison-image-wrapper">
+                        <img id="compare-img-2" src="" alt="Image 2">
+                        <p id="compare-label-2" class="image-label"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
