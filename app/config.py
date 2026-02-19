@@ -36,7 +36,8 @@ SUPPORTED_AUDIO_FORMATS = [".wav", ".mp3", ".flac", ".ogg"]
 WHISPER_MODEL_SIZE = "base"  # Options: tiny, base, small, medium, large
 
 # Stable Diffusion configuration
-STABLE_DIFFUSION_MODEL = "stabilityai/stable-diffusion-2-1"
+# Using v1.5 (already downloaded) - produces excellent 512x512 images
+STABLE_DIFFUSION_MODEL = "runwayml/stable-diffusion-v1-5"
 IMAGE_GENERATION_CONFIG = {
     "guidance_scale": 7.5,      # How closely to follow the prompt
     "num_inference_steps": 50,  # Quality vs speed trade-off

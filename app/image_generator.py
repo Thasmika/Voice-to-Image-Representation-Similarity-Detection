@@ -77,7 +77,7 @@ def load_stable_diffusion_model(model_name: str = "runwayml/stable-diffusion-v1-
     print(f"Loading Stable Diffusion model on {_device}...")
     
     try:
-        # Try loading with trust_remote_code and local_files_only fallback
+        # Try loading the configured model
         _sd_pipeline = StableDiffusionPipeline.from_pretrained(
             model_name,
             torch_dtype=torch.float16 if _device == "cuda" else torch.float32,
@@ -85,9 +85,9 @@ def load_stable_diffusion_model(model_name: str = "runwayml/stable-diffusion-v1-
             use_auth_token=False
         )
     except Exception as e:
-        print(f"Failed to load {model_name}, trying alternative model...")
-        # Fallback to CompVis model which is more widely cached
-        model_name = "CompVis/stable-diffusion-v1-4"
+        print(f"Failed to load {model_name}, trying runwayml/stable-diffusion-v1-5...")
+        # Fallback to runwayml v1.5 which you have downloaded
+        model_name = "runwayml/stable-diffusion-v1-5"
         _sd_pipeline = StableDiffusionPipeline.from_pretrained(
             model_name,
             torch_dtype=torch.float16 if _device == "cuda" else torch.float32,
